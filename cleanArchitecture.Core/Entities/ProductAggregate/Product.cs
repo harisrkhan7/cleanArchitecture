@@ -15,7 +15,7 @@ namespace cleanArchitecture.Core.Entities.ProductAggregate
 
         public bool IsNew { get; }
 
-        public virtual ICollection<ProductOptions> ProductOptions { get; set; }
+        public virtual ICollection<ProductOption> ProductOptions { get; set; }
 
         public Product()
         {

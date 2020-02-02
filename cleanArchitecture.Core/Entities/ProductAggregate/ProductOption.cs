@@ -1,7 +1,7 @@
 ﻿using System;
 namespace cleanArchitecture.Core.Entities.ProductAggregate
 {
-    public class ProductOptions :BaseEntity
+    public class ProductOption :BaseEntity
     {
         public string Name { get; set; }
 
@@ -13,7 +13,7 @@ namespace cleanArchitecture.Core.Entities.ProductAggregate
 
         public virtual Product Product { get; set; }
 
-        public ProductOptions()
+        public ProductOption()
         {
         }
     }
