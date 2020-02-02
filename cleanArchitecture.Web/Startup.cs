@@ -32,6 +32,7 @@ namespace cleanArchitecture.Web
             {
                 c.SwaggerDoc(swaggerDocName, new Microsoft.OpenApi.Models.OpenApiInfo { Title = swaggerTitle, Version = swaggerVersion });
             });
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
