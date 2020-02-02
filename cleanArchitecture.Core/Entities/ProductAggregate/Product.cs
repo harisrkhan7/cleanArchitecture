@@ -13,8 +13,6 @@ namespace cleanArchitecture.Core.Entities.ProductAggregate
 
         public decimal DeliveryPrice { get; set; }
 
-        public bool IsNew { get; }
-
         public virtual ICollection<ProductOption> ProductOptions { get; set; }
 
         public Product()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using cleanArchitecture.Core.Entities.ProductAggregate;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +16,12 @@ namespace cleanArchitecture.Infra.Data
 
         public DbSet<ProductOption> ProductOptions;
 
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+        
     }
 }

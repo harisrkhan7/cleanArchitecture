@@ -16,7 +16,7 @@ namespace cleanArchitecture.Infra.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
@@ -36,7 +36,7 @@ namespace cleanArchitecture.Infra.Data.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Set<T>().Update(entity);
             await _dbContext.SaveChangesAsync();
         }
 

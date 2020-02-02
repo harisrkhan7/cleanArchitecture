@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cleanArchitecture.Core", "c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cleanArchitecture.Infra", "cleanArchitecture.Infra\cleanArchitecture.Infra.csproj", "{E87165FA-BE3E-4AF3-A468-E0CD42A18DCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cleanArchitecture.Web", "cleanArchitecture.Web\cleanArchitecture.Web.csproj", "{2B79282C-2BC0-44B5-BC47-565E36C02895}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{E87165FA-BE3E-4AF3-A468-E0CD42A18DCC}.Release|x64.Build.0 = Release|Any CPU
 		{E87165FA-BE3E-4AF3-A468-E0CD42A18DCC}.Release|x86.ActiveCfg = Release|Any CPU
 		{E87165FA-BE3E-4AF3-A468-E0CD42A18DCC}.Release|x86.Build.0 = Release|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Debug|x64.Build.0 = Debug|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Release|x64.ActiveCfg = Release|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Release|x64.Build.0 = Release|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B79282C-2BC0-44B5-BC47-565E36C02895}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

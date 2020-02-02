@@ -1,4 +1,6 @@
-﻿using cleanArchitecture.Core.Entities.ProductAggregate;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using cleanArchitecture.Core.Entities.ProductAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,6 +10,8 @@ namespace cleanArchitecture.Infra.Data.Config
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.ToTable("Product");
+
             builder.HasKey(pr => pr.Id);
 
             builder.Property(pr => pr.Id)                
@@ -24,10 +28,6 @@ namespace cleanArchitecture.Infra.Data.Config
 
             builder.Property(pr => pr.DeliveryPrice)
                 .IsRequired();
-
-            builder.Property(pr => pr.IsNew)
-                .IsRequired();
-        }
-        
+        }        
     }
 }
