@@ -14,8 +14,8 @@ namespace cleanArchitecture.Infra
         public static void ConfigureInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IAsyncRepository<Product>, EfRepository<Product>>();
-            
-            
+            services.AddScoped<IAsyncRepository<ProductOption>, EfRepository<ProductOption>>();
+
         }
 
     }

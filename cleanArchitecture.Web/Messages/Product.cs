@@ -53,7 +53,6 @@ namespace cleanArchitecture.Web.Messages
             product.Description = this.Description;
             product.Name = this.Name;
             product.Price = this.Price;
-
             return product;
         }
     }

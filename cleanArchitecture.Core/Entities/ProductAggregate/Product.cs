@@ -17,7 +17,7 @@ namespace cleanArchitecture.Core.Entities.ProductAggregate
 
         public Product()
         {
-
+            ProductOptions = new List<ProductOption>();
         }
     }
 }

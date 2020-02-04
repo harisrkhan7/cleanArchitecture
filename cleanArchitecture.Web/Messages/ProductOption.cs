@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using ProductAggregate = cleanArchitecture.Core.Entities.ProductAggregate;
 
 
 namespace cleanArchitecture.Web.Messages
@@ -8,7 +9,7 @@ namespace cleanArchitecture.Web.Messages
     public class ProductOption
     {
         [DataMember]
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         [DataMember]
         public string Name { get; set; }
@@ -16,17 +17,31 @@ namespace cleanArchitecture.Web.Messages
         [DataMember]
         public string Description { get; set; }        
 
-        [DataMember]
-        public Guid? ProductId { get; set; }
 
         public Core.Entities.ProductAggregate.ProductOption ToProductOption()
         {
-            return new Core.Entities.ProductAggregate.ProductOption()
+            return new ProductAggregate.ProductOption()
             {
                 Description = this.Description,
-                Name = this.Name,
-                ProductId = this.ProductId               
+                Name = this.Name  
             };
+        }
+
+        public static ProductOption FromProductOption(Core.Entities.ProductAggregate.ProductOption productOption)
+        {
+            return new ProductOption()
+            {
+                Description = productOption.Description,
+                Id = productOption.Id,
+                Name = productOption.Name
+            };
+        }
+
+        public ProductAggregate.ProductOption Update(ProductAggregate.ProductOption productOption)
+        {
+            productOption.Description = this.Description;
+            productOption.Name = this.Name;
+            return productOption;
         }
     }
 }

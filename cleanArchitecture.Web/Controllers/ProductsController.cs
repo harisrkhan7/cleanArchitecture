@@ -2,7 +2,6 @@
 using ProductAggregate = cleanArchitecture.Core.Entities.ProductAggregate;
 using cleanArchitecture.Core.Interfaces.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using cleanArchitecture.Web.Messages;
 using System;
@@ -13,19 +12,19 @@ namespace cleanArchitecture.Web.Controllers
     public class ProductController : ControllerBase
     {
 
-        IAsyncRepository<ProductAggregate.Product> _productRepository;
+        IAsyncRepository<ProductAggregate.Product> _productsRepository;
 
         public ProductController(IAsyncRepository<ProductAggregate.Product> efRepository)
         {
-            _productRepository = efRepository;
+            _productsRepository = efRepository;
         }
 
-        [HttpGet(nameof(GetAsync))]
+        [HttpGet("/products")]
         public async Task<IActionResult> GetAsync()
         {
             try
             {
-                var products = await this._productRepository.ListAllAsync();
+                var products = await this._productsRepository.ListAllAsync();
                 var productDtos = products.Select(product => Product.FromProduct(product));
                 if (null == productDtos)
                 {
@@ -44,12 +43,12 @@ namespace cleanArchitecture.Web.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/products/{id}")]
         public async Task<IActionResult> GetAsync(Guid id)
         {
             try
             {
-                var product = await this._productRepository.GetByIdAsync(id);
+                var product = await this._productsRepository.GetByIdAsync(id);
                 if (null == product)
                 {
                     return NotFound();
@@ -67,13 +66,13 @@ namespace cleanArchitecture.Web.Controllers
         }
 
 
-        [HttpPost(nameof(PostAsync))]
+        [HttpPost("/products")]
         public async Task<IActionResult> PostAsync([FromBody]Product product)
         {
             try
             {
                 var productRecord = product.ToProduct();
-                var productResult = await this._productRepository.AddAsync(productRecord);
+                var productResult = await this._productsRepository.AddAsync(productRecord);
                 return new CreatedResult(nameof(PostAsync), Product.FromProduct(productResult));
             }
             catch (Exception ex)
@@ -83,12 +82,12 @@ namespace cleanArchitecture.Web.Controllers
             }
         }
 
-        [HttpPut(nameof(UpdateAsync))]
+        [HttpPut("/products")]
         public async Task<IActionResult> UpdateAsync([FromBody]Product product)
         {
             try
             {
-                var searchResult = await this._productRepository.GetByIdAsync(product.Id);
+                var searchResult = await this._productsRepository.GetByIdAsync(product.Id);
                 if(null == searchResult)
                 {
                     return NotFound();
@@ -96,7 +95,7 @@ namespace cleanArchitecture.Web.Controllers
                 else
                 {
                     
-                    await this._productRepository.UpdateAsync(product.Update(searchResult));
+                    await this._productsRepository.UpdateAsync(product.Update(searchResult));
                     return new CreatedResult(nameof(UpdateAsync), Product.FromProduct(searchResult));
                 }
             }
@@ -107,18 +106,21 @@ namespace cleanArchitecture.Web.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/products/{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             try
             {
-                var product = new ProductAggregate.Product()
+                var searchResult = await this._productsRepository.GetByIdAsync(id);
+                if (null == searchResult)
                 {
-                    Id = id
-                };
-
-                await this._productRepository.DeleteAsync(product);
-                return StatusCode(StatusCodes.Status202Accepted);
+                    return NotFound();
+                }
+                else
+                {
+                    await this._productsRepository.DeleteAsync(searchResult);
+                    return StatusCode(StatusCodes.Status202Accepted);
+                }
             }
             catch (Exception ex)
             {
