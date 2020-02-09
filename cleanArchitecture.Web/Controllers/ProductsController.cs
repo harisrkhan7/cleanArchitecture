@@ -25,13 +25,14 @@ namespace cleanArchitecture.Web.Controllers
             try
             {
                 var products = await this._productsRepository.ListAllAsync();
-                var productDtos = products.Select(product => Product.FromProduct(product));
-                if (null == productDtos)
+
+                if (null == products)
                 {
                     return NotFound();
                 }
                 else
                 {
+                    var productDtos = products.Select(product => Product.FromProduct(product));
                     return Ok(productDtos);
                 }
             }
@@ -95,7 +96,7 @@ namespace cleanArchitecture.Web.Controllers
                 else
                 {
                     
-                    await this._productsRepository.UpdateAsync(product.Update(searchResult));
+                    await this._productsRepository.UpdateAsync(product.Update(searchResult));                    
                     return new CreatedResult(nameof(UpdateAsync), Product.FromProduct(searchResult));
                 }
             }
@@ -119,7 +120,7 @@ namespace cleanArchitecture.Web.Controllers
                 else
                 {
                     await this._productsRepository.DeleteAsync(searchResult);
-                    return StatusCode(StatusCodes.Status202Accepted);
+                    return Accepted();
                 }
             }
             catch (Exception ex)

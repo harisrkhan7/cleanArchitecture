@@ -32,7 +32,7 @@ namespace cleanArchitecture.Web.Controllers
                 {
                     return NotFound();
                 }
-                else if(null == product.ProductOptions)
+                else if(null == product.ProductOptions || product.ProductOptions.Count == 0)
                 {
                     return NotFound();
                 }
@@ -72,19 +72,21 @@ namespace cleanArchitecture.Web.Controllers
         {
             try
             {
-                var productOption = await _productsRepository.GetByIdAsync(productId);
+                var product = await _productsRepository.GetByIdAsync(productId);
 
-                if (null == productOption)
+                if (null == product)
                 {
                     return NotFound();
                 }
 
                 var productOptionRecord = option.ToProductOption();
-                productOption.ProductOptions.Add(productOptionRecord);
+                product.ProductOptions.Add(productOptionRecord);
+
+                await _productsRepository.UpdateAsync(product);
 
                 var updatedProductOption = ProductOption.FromProductOption(productOptionRecord);
 
-                return Ok(updatedProductOption);
+                return new CreatedResult(nameof(CreateOptionAsync), updatedProductOption);
             }
             catch (Exception ex)
             {
