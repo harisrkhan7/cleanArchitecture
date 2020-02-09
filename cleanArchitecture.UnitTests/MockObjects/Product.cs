@@ -60,6 +60,13 @@ namespace cleanArchitecture.UnitTests.MockObjects
             return product;
         }
 
+        public static ProductAggregate.Product GetProduct_WithOptions()
+        {
+            var product = GetProduct();
+            product.ProductOptions = ProductOption.GetProductOptions();
+            return product;
+        }
+
         public static Messages.Product GetProductDTO()
         {
             var productDto = new Messages.Product()

@@ -53,7 +53,7 @@ namespace cleanArchitecture.UnitTests.Controllers
             //Arrange
             var productRepository = new Mock<IAsyncRepository<ProductAggregate.Product>>();
             productRepository.Setup(repo => repo.ListAllAsync())
-                .ReturnsAsync(Product.GetProductsEmpty())
+                .ReturnsAsync(Product.GetProducts_Empty())
                 .Verifiable();
 
             var controlller = new ProductController(productRepository.Object);
@@ -75,7 +75,6 @@ namespace cleanArchitecture.UnitTests.Controllers
             productRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(Product.GetProduct())
                 .Verifiable();
-
             
 
             var controlller = new ProductController(productRepository.Object);
@@ -286,7 +285,6 @@ namespace cleanArchitecture.UnitTests.Controllers
             var result = await controlller.DeleteAsync(new Guid());
 
             //Assert
-
             var notFoundResult = result as NotFoundResult;
 
             productRepository.Verify();
