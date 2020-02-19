@@ -34,7 +34,8 @@ namespace cleanArchitecture.Web
             });
 
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options => options.UseLazyLoadingProxies()
+                .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.ConfigureInfrastructure();
         }
